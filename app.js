@@ -61,6 +61,6 @@ app.post('/requestList', function(req, res) {
 
 });
 
-app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, function () {
-  console.log('Example app listening on port:' + process.env.PORT);
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1", function () {
+  console.log('Example app listening on port:' + process.env.OPENSHIFT_NODEJS_PORT);
 });
