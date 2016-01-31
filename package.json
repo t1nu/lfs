@@ -34,7 +34,7 @@
     "tmp": "0.0.23"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
     "prestart": "npm install",
     "start": "node app.js",
     "pretest": "npm install",
@@ -53,5 +53,6 @@
     "pg": "^4.4.3"
   },
   "bundleDependencies": [],
-  "private": true
+  "private": true, 
+  "main": "app.js"
 }
