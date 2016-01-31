@@ -1,0 +1,32 @@
+<table ng-if="model" class="table">
+  <tr>
+    <td>Name:</td>
+    <td>{{user.username}}</td>
+  </tr>
+  <tr>
+    <td>Email address:</td>
+    <td>{{user.email}}</td>
+  </tr>
+  <tr>
+    <td>Room Height:</td>
+    <td>{{model.roomheight}}</td>
+  </tr>
+  <tr>
+    <td>Room Coordinates:</td>
+    <td><span ng-repeat="c in model.coordinates"><lfs-coordinate coordinate="c"></lfs-coordinate></span></td>
+  </tr>
+  <tr>
+    <td>Source Coordinates:</td>
+    <td><span ng-repeat="c in model.sources"><lfs-coordinate coordinate="c"></lfs-coordinate></span></td>
+  </tr>
+  <tr>
+    <td>Receiver Coordinates:</td>
+    <td><span><lfs-coordinate coordinate="model.receiver"></lfs-coordinate></span></td>
+  </tr>
+  <tr>
+    <td>Layout:</td>
+    <td>
+      <lfs-layout></lfs-layout>
+    </td>
+  </tr>
+</table>

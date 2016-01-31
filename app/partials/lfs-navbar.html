@@ -1,0 +1,16 @@
+<span ng-if="isNotFirstState()" style="text-align: left;">
+ <button type="button" class="btn btn-default" ng-click="back()">
+   <span class="glyphicon glyphicon-chevron-left"></span> Back
+  </button>
+</span>
+<span ng-if="isNotLastState()" style="text-align: right;">
+  <!--<button type="button" class="btn btn-primary" ng-click="next()">-->
+  <button type="button" class="btn btn-primary" ng-click="next()" ng-disabled="nextDisabled">
+    <span class="glyphicon glyphicon-chevron-right"></span> Next
+  </button>
+</span>
+<span ng-if="isNotLastState() == false" style="text-align: right;">
+  <button type="button" class="btn btn-primary" ng-click="submit()">
+    <span class="glyphicon glyphicon-send"></span> Submit
+  </button>
+</span>

@@ -1,0 +1,29 @@
+<div id="foo" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Requests</h3>
+        </div>
+        <div class="panel-body">
+          <p>Saved requests</p>
+        </div>
+
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Email address</th>
+            <th>Detail</th>
+            <th>Date created</th>
+          </tr>
+          <tr ng-repeat="request in list">
+            <td>{{request.user.username}}</td>
+            <td>{{request.user.email}}</td>
+            <td><a ui-sref="requestDetail({requestId: request.request_id})">detail</a></td>
+            <td>{{request.creationdate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+          </tr>
+        </table>        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div id="foo" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Layout</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form">
+            <p>
+              Define the layout of your room. All values in centimetres.
+            </p>
+            <form name="fheight" class="validateform">
+          
+              <div class="form-group">
+                <label>Room Height:</label>
+                <input style="width:100px" name="h" class="form-control" type="number" ng-model="model.roomheight" min="0" placeholder="height in cm" required>
+                <span class="error" ng-show="fheight.$dirty && fheight.h.$error.required">required!</span>
+              </div>
+            </form>
+            <form name="flayout">
+              <div class="form-group">
+                <label>Layout: </label>
+                <div class="input-group">
+                  <span class="input-group-addon">x:</span>
+                  <input name="c1" class="form-control" type="number" ng-model="coordinate.xValue" min="0" required/>
+
+                  <span class="input-group-addon">y:</span>
+                  <input name="c2" class="form-control" type="number" ng-model="coordinate.yValue" min="0" required/>
+
+                  <span class="input-group-btn"><button class="btn btn-primary" ng-click="onAddCoordinate(coordinate)" ng-disabled="!flayout.$valid">Add</button></span>
+                </div>
+                <span class="error" ng-show="!!flayout.c1.$error.min">x: only positive values!</span>
+                <span class="error" ng-show="!!flayout.c2.$error.min">y: only positive values!</span>
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <span ng-repeat="c in model.coordinates">
+        <button type="button" style="margin-top:5px" class="btn btn-default btn-sm" ng-click="onDelCoordinate(c)">
+          ( {{c.xValue}} / {{c.yValue}} ) <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+            </span>
+          </div>
+          <div>
+            <br>
+            <button type="button" class="btn btn-default" ng-click="onDelAllCoordinates()"><span class="glyphicon glyphicon-trash"></span> Reset</button>
+          </div>
+
+        </div>
+
+        <div class="panel-footer">
+          <lfs-navbar next-disabled="!isValidlayout() || !fheight.$valid"></lfs-navbar>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <lfs-layout datamodel="model"></lfs-layout>
+    </div>
+  </div>
+</div>
