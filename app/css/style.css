@@ -15,12 +15,20 @@ body {
 	font-size:14px;
 	font-weight:300;
 	line-height:1.6em;
-	color:#656565;
+	color: #656565;
 	overflow-x:hidden;
- }
+	}
+
+ 
+.bg {
+    background-image: url(../img/studio.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 650px;
+}
  
 p {
-	color:#656565;
+	color: #656565;
 	font-family:'Open Sans', Arial, sans-serif;
 	font-weight:300;
 }
@@ -28,8 +36,25 @@ p {
 	font-family: 'Montserrat', sans-serif;
 	font-weight:500;
 	line-height:1.1em;
-	color:#333;
+	color: #FFF4F4;
 	margin-bottom: 20px;
+}
+
+.white p,i {
+	color: white;
+}
+
+.panel-primary {
+background-color: #B17676;
+border-color: #B17676;
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+}
+.panel-primary>.panel-heading {
+background-color: #B17676;
+border-color: #B17676;
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
 }
 
 /*===========================
@@ -105,7 +130,7 @@ ul.nav-pills  {
 
 #main-content {
 	padding:50px 0;
-	text-align:left;	
+	text-align:left;
 }
 .big-box {
 	margin-bottom:40px;
@@ -119,8 +144,10 @@ ul.nav-pills  {
   transition-duration: 2s;
 }	
 
-.box-bg {  	
-	margin-bottom:80px; 
+.box-bg {
+	margin-bottom:80px;
+	/* background-color: white; */
+	padding: 5px;
 }
 
 .thumbnail {

@@ -30,7 +30,7 @@ phonecatDirectives.directive('lfsLayout', function() {
           s = s + ' L' + arr[0].xValue + ',' + arr[0].yValue;
         }
 
-        scope.layoutStyle = "width:" + (scope.xMax + padding) + "px;height:" + (scope.yMax + padding) + "px";
+        scope.layoutStyle = "background-color: white;width:" + (scope.xMax + padding) + "px;height:" + (scope.yMax + padding) + "px";
         return s;
       }
 

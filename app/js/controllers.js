@@ -6,6 +6,7 @@ var phonecatControllers = angular.module('phonecatControllers', []);
 
 phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) {
+    new WOW().init();   
     $scope.initRequest = function() {
       Datamodel.initRequest();
       $state.go('requestStepUser');
@@ -15,7 +16,8 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
 
 phonecatControllers.controller('TheoryCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) { 
-  new WOW().init();   }
+  new WOW().init();   
+  }
 ]);
 
 phonecatControllers.controller('RequestInitCtrl', ['$scope', '$state', 'Datamodel',
