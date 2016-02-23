@@ -10,8 +10,8 @@ phonecatDirectives.directive('lfsLayout', function() {
       function getSvgPoints(arr) {
         console.log('getSvgPoints');
         console.log(arr);
-        scope.xMax = 405;
-        scope.yMax = 305;
+        scope.xMax = 100;
+        scope.yMax = 100;
         var padding = 20;
         var s = "";
         if (angular.isDefined(arr) && (arr.length > 2)) {

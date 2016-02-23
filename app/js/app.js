@@ -1,14 +1,7 @@
 'use strict';
 
-/* App Module */
-
-// new WOW().init();
-
-
 var phonecatApp = angular.module('phonecatApp', [
   'ui.router',
-  // 'phonecatAnimations',
-
   'phonecatControllers',
   'phonecatFilters',
   'phonecatServices',
@@ -16,8 +9,7 @@ var phonecatApp = angular.module('phonecatApp', [
 ]);
 
 phonecatApp.config(function($stateProvider, $urlRouterProvider) {
-    // $urlRouterProvider.otherwise('/home');
-    console.log('state config>');
+    $urlRouterProvider.otherwise('/home');
     $stateProvider
         .state('home', {
             url: '/home',
@@ -28,6 +20,11 @@ phonecatApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/theory',
             templateUrl: 'partials/theory.html',
             controller: 'TheoryCtrl'
+        })
+        .state('faq', {
+            url: '/faq',
+            templateUrl: 'partials/faq.html',
+            controller: 'FaqCtrl'
         })
         .state('requestInit', {
             url: '/requestInit',
