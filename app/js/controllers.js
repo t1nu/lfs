@@ -7,9 +7,8 @@ var phonecatControllers = angular.module('phonecatControllers', []);
 phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) {
     new WOW().init();   
-    $scope.initRequest = function() {
-      Datamodel.initRequest();
-      $state.go('requestStepUser');
+    $scope.sendMail = function() {
+      Datamodel.sendMail();
     }
   }
 ]);
@@ -119,13 +118,43 @@ phonecatControllers.controller('RequestStepConfirmCtrl', ['$scope', '$location',
     $scope.submit = function() {
       console.log('ctrl submit!');
       var httpRequest = {
-        "request_user": $scope.user,
+        "request_user": Datamodel.request.user,
         "model": $scope.model
       };
-      RestService.postRequest(httpRequest).then(function() {
-        $location.path('/home');
+      RestService.postRequest(httpRequest).then(function(res) {
+        Datamodel.request.user.key = res.data.key;
+        $location.path('/requestStepFinal');
       });
     }
+  }
+]);
+
+phonecatControllers.controller('RequestStepFinalCtrl', ['$scope', '$location', 'Datamodel', 'RestService',
+  function($scope, $location, Datamodel, RestService) {
+    $scope.model = Datamodel.request.model;
+    $scope.user = Datamodel.request.user;
+    
+    console.log('sending mail!');
+    var key = $scope.user.key;
+    var email = $scope.user.email;
+    // var key = '12341234';
+    // var email = 'martin.haefelfinger@gmail.com';
+    
+    var msgText = '<p><h1>Thank you!</h1> We have received your request and will process it as fast as possible.'
+    + '<br />Your reference key is <strong>' + key + '</strong></p>';
+    var msg = {
+        "to": email,
+        "subject": 'Confirmation from WaveBusters',
+        "message": msgText
+    };
+    RestService.sendMail(msg).then(function() {
+        console.log('mail sent!');
+    });
+
+    $scope.close = function(){
+        $location.path('/home');
+    }
+
   }
 ]);
 

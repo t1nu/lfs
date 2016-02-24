@@ -51,6 +51,11 @@ phonecatApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/request-step-confirm.html',
             controller: 'RequestStepConfirmCtrl'
         })
+        .state('requestStepFinal', {
+            url: '/requestStepFinal',
+            templateUrl: 'partials/request-step-final.html',
+            controller: 'RequestStepFinalCtrl'
+        })
         .state('requestList', {
             url: '/requestList',
             templateUrl: 'partials/request-list.html',

@@ -18,9 +18,18 @@ angular.module('phonecatServices').factory('RestService', ['$http', function($ht
 
   }
 
+  var sendMail = function(msg) {
+    return $http({
+      url: '/sendMail',
+      method: "POST",
+      data: msg
+    });    
+  }
+
   return {
     postRequest: postRequest,
     getRequestList: getRequestList,
-    getRequestById: getRequestById
+    getRequestById: getRequestById,
+    sendMail: sendMail
   };
 }]);

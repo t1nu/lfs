@@ -11,12 +11,14 @@
 
         <table class="table">
           <tr>
+            <th>Key</th>
             <th>Name</th>
             <th>Email address</th>
             <th>Detail</th>
             <th>Date created</th>
           </tr>
           <tr ng-repeat="request in list">
+            <td>{{request.user.key}}</td>
             <td>{{request.user.username}}</td>
             <td>{{request.user.email}}</td>
             <td><a ui-sref="requestDetail({requestId: request.request_id})">detail</a></td>

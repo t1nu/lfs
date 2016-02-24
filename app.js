@@ -7,8 +7,15 @@ app.use(bodyParser.json());
 var pg = require('pg');
 var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
 
+var request = require('request');
+var shortid = require('shortid');
+
+//Mailgun
+var api_key = 'key-38ddf96fbad6c8bb0e6fa3c20fc6fab5';
+var domain = 'sandboxa3b7d53c9b08456c8a915da934cf4c86.mailgun.org';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 app.use('/lfs', express.static(__dirname + '/app'));
-// app.use('/lfs', express.static(__dirname + '/app'));
 
 app.get('/requestList', function(req, res) {
     var results = [];
@@ -35,8 +42,9 @@ app.get('/requestList', function(req, res) {
 });
 
 app.post('/requestList', function(req, res) {
-    var results = [];
+    // var results = [];
     var data = req.body;
+    data.request_user.key = shortid.generate();
     pg.connect(connectionString, function(err, client, done) {
         if(err) {
           done();
@@ -49,17 +57,35 @@ app.post('/requestList', function(req, res) {
         var query = client.query("SELECT request_id, request_user as user2, model FROM lfs_request");
 
         query.on('row', function(row) {
-            results.push(row);
+            // results.push(row);
         });
         
         query.on('end', function() {
             done();
-            return res.json(results);
+            return res.json({"key": data.request_user.key});
         });
 
     });
 
 });
+
+app.post('/sendMail', function(req, res) {
+    var msg = req.body;
+    var data = {
+        from: 'Wavebusters <martin.haefelfinger@gmail.com>',
+        to: msg.to,
+        subject: msg.subject,
+        text: msg.message,
+        html: msg.message
+    };
+     
+    mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+        console.log(error);
+        return res.json([]);
+    });
+
+})
 
 app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1", function () {
   console.log('Example app listening on port:' + process.env.OPENSHIFT_NODEJS_PORT);

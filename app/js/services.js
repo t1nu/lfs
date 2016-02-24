@@ -118,10 +118,17 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       return promise;
     }
 
+    var sendMail = function(msg) {
+      RestService.sendMail(msg).then(function() {
+        console.log('mail sent!');
+      });
+    }
+
     return {
       request: request,
       state: state,
       initRequest: initRequest,
+      sendMail: sendMail,
       isInPolygon: isInPolygon,
       getRequestList: getRequestList,
       getRequestById: getRequestById
