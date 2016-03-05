@@ -5,8 +5,10 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
 var pg = require('pg');
-console.log('host: ' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST);
-var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
+// console.log('host: ' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST);
+
+// var connectionString = 'postgres://' + process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD + '@' + process.env.OPENSHIFT_POSTGRESQL_DB_ + ':5432/lfs';
+var connectionString = process.env.OPENSHIFT_POSTGRESQL_DB_URL;
 //var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
 
 var request = require('request');
