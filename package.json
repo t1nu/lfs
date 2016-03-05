@@ -50,6 +50,7 @@
     "bower": "^1.7.2",
     "express": "^4.13.3",
     "mailgun-js": "^0.7.7",
+    "paypal-ipn": "^3.0.0",
     "pg": "^4.4.3",
     "request": "^2.69.0",
     "shortid": "^2.2.4"

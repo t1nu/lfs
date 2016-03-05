@@ -5,7 +5,9 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
 var pg = require('pg');
+console.log('host: ' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST);
 var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
+//var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
 
 var request = require('request');
 var shortid = require('shortid');
@@ -85,7 +87,28 @@ app.post('/sendMail', function(req, res) {
         return res.json([]);
     });
 
-})
+});
+
+app.post('/paypal', function(req,res){
+
+res.send(200);
+console.log("IN PAYPAL !! req.body : "+req.body);
+var ipn = require('paypal-ipn');
+ipn.verify(req.body, function callback(err, msg) {
+      if (err) {
+        console.log("Error:"+err);
+      } else {
+        //Do stuff with original params here
+          console.log("req.body.payment_status :"+req.body.payment_status+" msg: "+msg);
+          res.end();
+        if (req.body.payment_status == 'Completed') {
+          //Payment has been confirmed as completed
+            console.log('payment confirmed');
+        }
+      }
+    });
+});
+
 
 app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1", function () {
   console.log('Example app listening on port:' + process.env.OPENSHIFT_NODEJS_PORT);
