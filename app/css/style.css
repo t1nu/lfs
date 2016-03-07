@@ -46,6 +46,12 @@ p {
 
 label {
 	color: white;
+	vertical-align: top;
+}
+
+textarea {
+    color: black;
+    border-radius: 5px;
 }
 
 .panel {

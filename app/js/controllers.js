@@ -13,9 +13,43 @@ phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   }
 ]);
 
+phonecatControllers.controller('ContactCtrl', ['$scope', '$location', '$state', 'Datamodel',
+  function($scope, $location, $state, Datamodel) {
+    $scope.sendMessage = function() {
+      var messageHTML = $scope.message.replace(/\n/g, "<br>");
+      console.log($scope.message);
+      console.log(messageHTML);
+      var msg = {
+        from: $scope.name + ' <' + $scope.email + '>',
+        to: 'martin.haefelfinger@gmail.com',
+        subject: 'WaveBusters Contact Form Message from ' + $scope.name,
+        message: messageHTML
+      };
+      Datamodel.sendMail(msg);
+
+      var msgConfirm = {
+        to: $scope.email,
+        subject: 'WaveBusters - Message received!',
+        message: 'Thank you ' + $scope.name + '!<br>We received your message and will try to answer as soon as possible.<br><br>Message:<br>' + messageHTML
+
+      }
+      Datamodel.sendMail(msgConfirm);
+      $location.path('/contactConfirm');
+    }
+  }
+]);
+
+phonecatControllers.controller('ContactConfirmCtrl', ['$scope', '$location', '$state', 'Datamodel',
+  function($scope, $location, $state, Datamodel) {     
+    $scope.close = function(){
+        $location.path('/home');
+    }
+  }
+]);
+
 phonecatControllers.controller('TheoryCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) { 
-  new WOW().init();   
+  // new WOW().init();   
   }
 ]);
 
@@ -27,6 +61,7 @@ phonecatControllers.controller('RequestInitCtrl', ['$scope', '$state', 'Datamode
     }
   }
 ]);
+
 phonecatControllers.controller('RequestStepUserCtrl', ['$scope', 'Datamodel',
   function($scope, Datamodel) {
     $scope.user = Datamodel.request.user;

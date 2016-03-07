@@ -6,3 +6,6 @@ create table lfs_request(
 	model json, 
 	request_user json
 	);
+
+ alter table lfs_request add column request_key char(9);
+ 

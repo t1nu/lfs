@@ -16,6 +16,16 @@ phonecatApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
         })
+        .state('contact', {
+            url: '/contact',
+            templateUrl: 'partials/contact.html',
+            controller: 'ContactCtrl'
+        })
+        .state('contactConfirm', {
+            url: '/contactConfirm',
+            templateUrl: 'partials/contact-confirm.html',
+            controller: 'ContactConfirmCtrl'
+        })
         .state('theory', {
             url: '/theory',
             templateUrl: 'partials/theory.html',

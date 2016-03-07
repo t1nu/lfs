@@ -14,8 +14,8 @@ angular.module('phonecatServices').factory('RestService', ['$http', function($ht
     return $http.get('/requestList');
   }
 
-  var getRequestById = function() {
-
+  var getRequestByKey = function(key) {
+    return $http.get('/requestList/' + key);
   }
 
   var sendMail = function(msg) {
@@ -29,7 +29,7 @@ angular.module('phonecatServices').factory('RestService', ['$http', function($ht
   return {
     postRequest: postRequest,
     getRequestList: getRequestList,
-    getRequestById: getRequestById,
+    getRequestByKey: getRequestByKey,
     sendMail: sendMail
   };
 }]);

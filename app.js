@@ -5,11 +5,11 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
 var pg = require('pg');
-// console.log('host: ' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST);
 
-// var connectionString = 'postgres://' + process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD + '@' + process.env.OPENSHIFT_POSTGRESQL_DB_ + ':5432/lfs';
-var connectionString = process.env.OPENSHIFT_POSTGRESQL_DB_URL;
-//var connectionString = 'postgres://dbAdmin:asdfasdf@mhdbinstance.cyvr2owy5pvv.eu-west-1.rds.amazonaws.com:5432/lfs';
+var connectionString = process.env.OPENSHIFT_POSTGRESQL_DB_URL || 'postgres://postgres:asdfasdf@127.0.0.1:5432/postgres';
+
+var sql_select_all = 'SELECT request_id, request_user as user, model, request_key, timestamp_creation creationDate FROM lfs_request';
+var sql_select_by_key = sql_select_all + ' WHERE request_key = $1';
 
 var request = require('request');
 var shortid = require('shortid');
@@ -30,7 +30,7 @@ app.get('/requestList', function(req, res) {
           return res.status(500).json({ success: false, data: err});
         }
 
-        var query = client.query("SELECT request_id, request_user as user, model, timestamp_creation creationDate FROM lfs_request");
+        var query = client.query(sql_select_all);
 
         query.on('row', function(row) {
             results.push(row);
@@ -40,15 +40,11 @@ app.get('/requestList', function(req, res) {
             done();
             return res.json(results);
         });
-
     });
-
 });
 
-app.post('/requestList', function(req, res) {
-    // var results = [];
-    var data = req.body;
-    data.request_user.key = shortid.generate();
+app.get('/requestList/:key', function(req, res) {
+    var results = [];
     pg.connect(connectionString, function(err, client, done) {
         if(err) {
           done();
@@ -56,9 +52,33 @@ app.post('/requestList', function(req, res) {
           return res.status(500).json({ success: false, data: err});
         }
 
-        var query = client.query("INSERT INTO lfs_request(model, request_user) VALUES ($1, $2)", [data.model, data.request_user]);
+        var query = client.query(sql_select_by_key, [req.params.key]);
 
-        var query = client.query("SELECT request_id, request_user as user2, model FROM lfs_request");
+        query.on('row', function(row) {
+            results.push(row);
+        });
+
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+    });
+});
+
+app.post('/requestList', function(req, res) {
+    // var results = [];
+    var data = req.body;
+    var key = shortid.generate();
+    pg.connect(connectionString, function(err, client, done) {
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        var query = client.query("INSERT INTO lfs_request(model, request_user, request_key) VALUES ($1, $2, $3)", [data.model, data.request_user, key]);
+
+        var query = client.query(sql_select_all);
 
         query.on('row', function(row) {
             // results.push(row);
@@ -66,7 +86,7 @@ app.post('/requestList', function(req, res) {
         
         query.on('end', function() {
             done();
-            return res.json({"key": data.request_user.key});
+            return res.json({"key": key});
         });
 
     });
@@ -76,13 +96,14 @@ app.post('/requestList', function(req, res) {
 app.post('/sendMail', function(req, res) {
     var msg = req.body;
     var data = {
-        from: 'Wavebusters <martin.haefelfinger@gmail.com>',
+        from: msg.from || 'Wavebusters <martin.haefelfinger@gmail.com>',
         to: msg.to,
         subject: msg.subject,
         text: msg.message,
         html: msg.message
     };
-     
+    
+
     mailgun.messages().send(data, function (error, body) {
         console.log(body);
         console.log(error);
