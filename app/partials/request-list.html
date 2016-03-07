@@ -18,10 +18,10 @@
             <th>Date created</th>
           </tr>
           <tr ng-repeat="request in list">
-            <td>{{request.user.key}}</td>
+            <td>{{request.request_key}}</td>
             <td>{{request.user.username}}</td>
             <td>{{request.user.email}}</td>
-            <td><a ui-sref="requestDetail({requestId: request.request_id})">detail</a></td>
+            <td><a ui-sref="requestDetailFull({requestId: request.request_id})">detail</a></td>
             <td>{{request.creationdate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
           </tr>
         </table>        

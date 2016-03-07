@@ -71,8 +71,13 @@ phonecatApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/request-list.html',
             controller: 'RequestListCtrl'
         })
+        .state('requestDetailFull', {
+            url: '/requestDetailFull/:requestId',
+            templateUrl: 'partials/request-detail-full.html',
+            controller: 'RequestDetailFullCtrl'
+        })
         .state('requestDetail', {
-            url: '/requestDetail/:requestId',
+            url: '/requestDetail/:requestKey',
             templateUrl: 'partials/request-detail.html',
             controller: 'RequestDetailCtrl'
         })

@@ -2,6 +2,8 @@
 
 /* Controllers */
 
+var requestDetailURL = 'http://wb-tinu.rhcloud.com/lfs/#/requestDetail/';
+
 var phonecatControllers = angular.module('phonecatControllers', []);
 
 phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
@@ -176,7 +178,8 @@ phonecatControllers.controller('RequestStepFinalCtrl', ['$scope', '$location', '
     // var email = 'martin.haefelfinger@gmail.com';
     
     var msgText = '<p><h1>Thank you!</h1> We have received your request and will process it as fast as possible.'
-    + '<br />Your reference key is <strong>' + key + '</strong></p>';
+    + '<br />Your reference key is <strong>' + key + '</strong>'
+    + '<br><a href="'+ requestDetailURL + key + '">Review your Request here</a></p>';
     var msg = {
         "to": email,
         "subject": 'Confirmation from WaveBusters',
@@ -201,7 +204,7 @@ phonecatControllers.controller('RequestListCtrl', ['$scope', 'Datamodel',
     });
   }
 ]);
-phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$stateParams', 'Datamodel',
+phonecatControllers.controller('RequestDetailFullCtrl', ['$scope', '$stateParams', 'Datamodel',
   function($scope, $stateParams, Datamodel) {
     console.log($stateParams.requestId);
     $scope.request = {};
@@ -209,6 +212,14 @@ phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$stateParams', '
     Datamodel.getRequestById($stateParams.requestId).then(function(request) {
       console.log('getRequestById');
       $scope.request = request;
+    })
+  }
+]);
+phonecatControllers.controller('RequestDetailCtrl', ['$scope', '$stateParams', 'Datamodel',
+  function($scope, $stateParams, Datamodel) {
+    $scope.request = {};
+    Datamodel.getRequestByKey($stateParams.requestKey).then(function(request) {
+      $scope.request = request[0];
     })
   }
 ]);

@@ -118,6 +118,19 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       return promise;
     }
 
+    var getRequestByKey = function(key) {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+
+      RestService.getRequestByKey(key).then(function(response) {
+        console.log(response);
+        list = response.data;
+        deferred.resolve(list);
+      });
+      return promise;
+    }
+
+
     var sendMail = function(msg) {
       RestService.sendMail(msg).then(function() {
         console.log('mail sent!');
@@ -131,7 +144,8 @@ phonecatServices.factory('Datamodel', ['RestService', '$q',
       sendMail: sendMail,
       isInPolygon: isInPolygon,
       getRequestList: getRequestList,
-      getRequestById: getRequestById
+      getRequestById: getRequestById,
+      getRequestByKey: getRequestByKey
     };
   }
 ]);
