@@ -1,0 +1,50 @@
+[
+{
+	"title": "Room acoustics – Sound reflections in rooms",
+	"href" : "room-acoustics",
+	"content": ["When you play back music through loudspeakers in a room, you do not only hear the sound produced by the loudspeakers, but also the room. The same is true if an instrument is played inside a room. Usually the room even strongly influences your perception of music. The reason for this are sound reflections. Sound waves are reflected at room walls, the floor, the ceiling and objects. Besides the direct sound wave, these reflected sound waves also arrive at our ears. In some rooms, certain reflections are favorable; in some rooms they are disturbing. At middle and high frequencies, a well-known effect of sound reflections is known as reverberation. At low frequencies, however, sound reflections have different effects."]
+},
+
+{
+	"title": "Low frequencies – Room modes",
+	"href" : "Low-frequencies",
+	"content": ["At low frequencies, the interference of multiply reflected sound waves leads to standing waves. These are specific sound field patterns, the so called room modes. In small rooms, they severely influence the perception of low frequencies (bass, low end) in music. Some tones can be clearly heard, whereas others seem to have disappeared. Furthermore, room modes cause a muddy and shaky bass sound. More technically spoken, room modes cause an uneven frequency response at low frequencies. And this is especially crucial for recording studios, mastering rooms or home theatres with critical listening environments. When designing or planning such rooms, the room modes have to be considered.",
+				"Room modes are resonances. Each room mode has a resonance frequency and a distinct sound pressure distribution called room mode shape. Room modes mainly depend on the room geometry, i.e. the room shape and the size."]
+},
+
+{
+	"title": "Room geometry determines room modes",
+	"href" : "room-geometry",
+	"content": ["It is well-known how room modes exactly look like in rectangular rooms. Acousticians have even figured out simple formulas to calculate the resonance frequencies and the corresponding room mode shapes. For rectangular rooms, rules of thumb exist which state how the dimensions of a room (length, width, height) should be to prevent problems with room modes. Regrettably, these rules are only based on statistics and the proposed room proportions do neither diminish room modes, nor do they consider the relevance of room modes. The fact is that room modes only manifest themselves if they are effectively excited, i.e. driven by a loudspeaker. For high-quality sound reproduction, looking at room modes only in a statistical way is not sufficient.",
+				"But room modes do not only occur in rectangular rooms with parallel walls, but also in rooms of irregular shape. It is a widespread misconception that building non parallel walls, breaks up room modes. This may at least help reducing flutter echoes, but the room modes are still there, but differently. For irregularly shaped rooms, the resonance frequencies and room mode shapes differ greatly. In contrast to the rectangular case, the room modes cannot be easily calculated. They have to be calculated by numerical simulations with sophisticated software. Today, these programs are operated by experts and they are mainly used in scientific context. However, with this website we want to give you also access to such simulations. We can provide you simulation results for your personal room geometry."]
+},
+
+{
+	"title": "Low frequency absorbers (bass traps)",
+	"href" : "low-frequency-absorbers",
+	"content": ["When you switch off a loudspeaker in an untreated room, the room modes decay only very slowly. This may take a few seconds for a decay of 60 decibels. These excessively long sound decays are the reason for an undefined and blurry bass sound. To fix this, low frequency sound absorbers are introduced to the room. They do not „suck in“ low frequencies, but they absorb low frequency sound energy and thus damp the room modes. Different types of low frequency absorbers exist such as the Helmholtz or the membrane absorber. Additionally, low frequency absorbers also affect the frequency response."]
+},
+
+{
+	"title": "Room frequency response",
+	"href" : "room-frequency-response",
+	"content": ["A room frequency response is commonly used to assess the transmission between sources (typically loudspeakers) and a listening position in a room. It describes the sound pressure level that is received at a certain point in the room if a constant (stationary) signal is emitted by the source. In small rooms this transmission is frequency dependent and dominated by the room modes. But also the damping of the modes, which is provided by low frequency absorbers, influences the room frequency response. Thus, the room frequency response contains information about", 
+				"<ul> <li>the excitation of modes by sources </li><li>the audibility of modes at a possible listening position and </li><li>the room treatment.</li></ul>", 
+				"If the room already exists, a frequency response can be measured. If the room does not exist yet, we can predict frequency responses within your personal room geometry.",
+				"<br><h5>What for?</h5>",
+				"<ul> <li>Room geometry: You can compare the low frequency behavior of different room geometries. This may help to generally decide for a specific property or room. Also the effect of structural adjustments, such as beveling a wall, can be investigated before new walls are built. [Example]</li><li>Absorber tuning: Low frequency type absorbers are tuned to a specific frequency. They should be tuned to a frequency which is crucial for the room, typically a resonance frequency. For this it is mandatory to know the room resonance frequencies. [Example]</li><li>Absorber placement: The room mode shapes can help in the placement of low frequency absorbers. For maximum efficiency, absorbers that react on sound pressure, such as membrane or Helmholtz absorbers, should be placed at locations with high sound pressure (red areas). Whereas absorbers that react on sound particle velocity, such as porous material, should be placed at locations with low sound pressure (blue areas). [Example]</li><li>Loudspeaker or subwoofer placement: The placement of a subwoofer in a room is a delicate task. The reason is that room modes only play a role if they are effectively excited, i.e. driven by a loudspeaker. Room mode shapes or comparisons of predicted frequency responses can help to locate good spots for the speaker(s). [Example]</li><li>Multiple loudspeakers: Some room modes may be suppressed using multiple loudspeakers or subwoofers synchronously. This can thus have a distinctive influence on the frequency response. Comparisons of predicted frequency responses can suggest to add or to remove some speakers. [Example]</li><li>Evaluation of listening positions: Of course also the listening position is crucial. The simulations can help to compare the frequency response at different listening locations. [Example]</li><li>Low frequency treatment: The effect of low frequency room treatment can be investigated by comparing predicted frequency responses of the treated and untreated room. [Example]</li></ul>"]
+},
+
+{
+	"title": "What you can get",
+	"href" : "What-you-can-get",
+	"content": ["<ul> <li>Room mode resonance frequencies [Example]</li><li>Room mode shapes [Example]</li><li>Frequency response at listening position (treated and untreated room) [Example]</li><li>Room mode shapes [Example]</li><li>Frequency response at listening position (treated and untreated room) [Example]</li><li>Frequency response in a horizontal plane (treated or untreated room) [Example]</li></ul>"]
+},
+
+{
+	"title": "How we do it",
+	"href" : "how-we-do-it",
+	"content": ["It’s not magic, it’s pure physics. We are graduate engineers, acousticians and computer scientists and we solve these tasks by heavy computations. We are using software tools that we developed for scientific purposes. With these tools, our computers numerically solve the 3D wave equation in frequency domain within a given geometry."]
+}
+
+]

@@ -40,6 +40,19 @@ p {
 	margin-bottom: 20px;
 }
 
+.index {
+    margin-bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 3px;
+    padding: 15px;
+    min-height: 220px;
+    color: white;
+}
+
+.index a {
+    cursor: pointer;
+}
+
 .white p,i {
 	color: white;
 }
@@ -51,7 +64,15 @@ label {
 
 textarea {
     color: black;
-    border-radius: 5px;
+    border-radius: 3px;
+}
+
+.btn {
+    border-radius: 3px;	
+}
+
+.form-control {
+    border-radius: 3px;	
 }
 
 .panel {
@@ -203,7 +224,7 @@ ul.nav-pills  {
 .box-bg {
     margin-bottom: 80px;
     background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 15px;
     min-height: 220px;
     color: white;

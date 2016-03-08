@@ -6,6 +6,10 @@ var requestDetailURL = 'http://wb-tinu.rhcloud.com/lfs/#/requestDetail/';
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
+phonecatControllers.run(['$anchorScroll', function($anchorScroll) {
+  $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
+}])
+
 phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) {
     new WOW().init();   
@@ -49,9 +53,24 @@ phonecatControllers.controller('ContactConfirmCtrl', ['$scope', '$location', '$s
   }
 ]);
 
-phonecatControllers.controller('TheoryCtrl', ['$scope', '$state', 'Datamodel',
-  function($scope, $state, Datamodel) { 
-  // new WOW().init();   
+phonecatControllers.controller('TheoryCtrl', ['$scope', '$sce', '$http', '$anchorScroll', '$location',
+  function($scope, $sce, $http, $anchorScroll, $location) { 
+    $scope.scroll = function(item){
+      $location.hash(item);
+      $anchorScroll();
+    };
+
+    $http.get('content/theory.json')
+       .then(function(res){
+      $scope.list = res.data;   
+
+      for (var i = 0; i < $scope.list.length; i++) {
+        $scope.list[i].contentHtml = [];
+        for (var j = 0; j < $scope.list[i].content.length; j++) {
+          $scope.list[i].contentHtml[j] = $sce.trustAsHtml($scope.list[i].content[j]);
+        }
+      }
+    });
   }
 ]);
 

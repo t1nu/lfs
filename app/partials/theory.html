@@ -1,61 +1,24 @@
-	<div class="col-lg-12">
-		<div class="col-md-9">
-			<div class="box-bg white">
-					<div class="align-center">
-						<h4 class="text-bold">Room acoustics – Sound reflections in rooms</h4>
-						<p>When you play back music through loudspeakers in a room, you do not only hear the sound produced by the loudspeakers, but also the room. The same is true if an instrument is played inside a room. Usually the room even strongly influences your perception of music. The reason for this are sound reflections. Sound waves are reflected at room walls, the floor, the ceiling and objects. Besides the direct sound wave, these reflected sound waves also arrive at our ears. In some rooms, certain reflections are favorable; in some rooms they are disturbing. At middle and high frequencies, a well-known effect of sound reflections is known as reverberation. At low frequencies, however, sound reflections have different effects.</p>
-					</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="box-bg white">
-					<div class="align-center">
-					<img src="img/diag1.png" alt="" width="100%"/>	
-					</div>
-			</div>
-		</div>		
-	</div>
-</div>	
-<div class="col-lg-12">
-		<div class="col-md-3">
-			<div class="box-bg white">
-				<div class="align-center">
-					<img src="img/diag3.png" alt="" width="100%"/>	
-				</div>
-			</div>
-		</div>
-		<div class="col-md-9">
-			<div class="box-bg white">
-				<div class="align-center">
-					<h4 class="text-bold">Low frequencies – Room modes</h4>
-					<p>At low frequencies, the interference of multiply reflected sound waves leads to standing waves. These are specific sound field patterns, the so called room modes. In small rooms, they severely influence the perception of low frequencies (bass, low end) in music. Some tones can be clearly heard, whereas others seem to have disappeared. Furthermore, room modes cause a muddy and shaky bass sound. More technically spoken, room modes cause an uneven frequency response at low frequencies. And this is especially crucial for recording studios, mastering rooms or home theatres with critical listening environments. When designing or planning such rooms, the room modes have to be considered.
-Room modes are resonances. Each room mode has a resonance frequency and a distinct sound pressure distribution called room mode shape. Room modes mainly depend on the room geometry, i.e. the room shape and the size.
-</p>
-				</div>
-			</div>
-		</div>		
-	</div>
+
+<div class="col-lg-6" >
+	<div class="index">
+			<p  ng-repeat="item in list"><a ng-click="scroll(item.href)">{{item.title}}</a></p>
+	</div>		
 </div>
 
-
-	<div class="col-lg-12">
-		<div class="col-md-9">
-			<div class="box-bg white">
-					<div class="align-center">
-						<h4 class="text-bold">Room geometry determines room modes</h4>
-						<p>It is well-known how room modes exactly look like in rectangular rooms. Acousticians have even figured out simple formulas to calculate the resonance frequencies and the corresponding room mode shapes. For rectangular rooms, rules of thumb exist which state how the dimensions of a room (length, width, height) should be to prevent problems with room modes. Regrettably, these rules are only based on statistics and the proposed room proportions do neither diminish room modes, nor do they consider the relevance of room modes. The fact is that room modes only manifest themselves if they are effectively excited, i.e. driven by a loudspeaker. For high-quality sound reproduction, looking at room modes only in a statistical way is not sufficient.
-But room modes do not only occur in rectangular rooms with parallel walls, but also in rooms of irregular shape. It is a widespread misconception that building non parallel walls, breaks up room modes. This may at least help reducing flutter echoes, but the room modes are still there, but differently. For irregularly shaped rooms, the resonance frequencies and room mode shapes differ greatly. In contrast to the rectangular case, the room modes cannot be easily calculated. They have to be calculated by numerical simulations with sophisticated software. Today, these programs are operated by experts and they are mainly used in scientific context. However, with this website we want to give you also access to such simulations. We can provide you simulation results for your personal room geometry.
-</p>
-					</div>
+<div class="col-lg-12" ng-repeat="item in list">
+	<div class="col-md-9">
+		<div class="box-bg white">
+			<div class="align-center">
+				<h4 id="{{item.href}}" class="text-bold">{{item.title}}</h4>
+				<p ng-repeat="section in item.contentHtml" ng-bind-html="section"></p>
 			</div>
 		</div>
-		<!-- <div class="col-md-3">
-			<div class="box-bg white">
-					<div class="align-center">
-					<img src="img/diag1.png" alt="" width="100%"/>	
-					</div>
-			</div>
-		</div>		 -->
 	</div>
-</div>	
-
+	<div class="col-md-3">
+		<div class="box-bg white">
+			<div class="align-center">
+				<img src="img/diag1.png" alt="" width="100%"/>	
+			</div>
+		</div>
+	</div>		
+</div>
