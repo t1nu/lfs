@@ -54,7 +54,8 @@ phonecatControllers.controller('ContactConfirmCtrl', ['$scope', '$location', '$s
 ]);
 
 phonecatControllers.controller('TheoryCtrl', ['$scope', '$sce', '$http', '$anchorScroll', '$location',
-  function($scope, $sce, $http, $anchorScroll, $location) { 
+  function($scope, $sce, $http, $anchorScroll, $location) {
+    
     $scope.scroll = function(item){
       $location.hash(item);
       $anchorScroll();
@@ -63,7 +64,27 @@ phonecatControllers.controller('TheoryCtrl', ['$scope', '$sce', '$http', '$ancho
     $http.get('content/theory.json')
        .then(function(res){
       $scope.list = res.data;   
+      for (var i = 0; i < $scope.list.length; i++) {
+        $scope.list[i].contentHtml = [];
+        for (var j = 0; j < $scope.list[i].content.length; j++) {
+          $scope.list[i].contentHtml[j] = $sce.trustAsHtml($scope.list[i].content[j]);
+        }
+      }
+    });
+  }
+]);
 
+phonecatControllers.controller('FaqCtrl', ['$scope', '$sce', '$http', '$anchorScroll', '$location',
+  function($scope, $sce, $http, $anchorScroll, $location) { 
+
+    $scope.scroll = function(item){
+      $location.hash(item);
+      $anchorScroll();
+    };
+
+    $http.get('content/faq.json')
+       .then(function(res){
+      $scope.list = res.data;   
       for (var i = 0; i < $scope.list.length; i++) {
         $scope.list[i].contentHtml = [];
         for (var j = 0; j < $scope.list[i].content.length; j++) {

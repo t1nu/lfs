@@ -1,6 +1,8 @@
 
 <div class="col-lg-6" >
 	<div class="index">
+		<h4>Theory</h5>
+		<p>All you need to know about sound reflections, room modes and frequency responses:</p>
 			<p  ng-repeat="item in list"><a ng-click="scroll(item.href)">{{item.title}}</a></p>
 	</div>		
 </div>
@@ -14,10 +16,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-3" ng-show="item.image">
 		<div class="box-bg white">
 			<div class="align-center">
-				<img src="img/diag1.png" alt="" width="100%"/>	
+				<img ng-src="{{item.image}}" alt="" width="100%"/>	
 			</div>
 		</div>
 	</div>		
