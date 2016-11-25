@@ -12,7 +12,6 @@ phonecatControllers.run(['$anchorScroll', function($anchorScroll) {
 
 phonecatControllers.controller('HomeCtrl', ['$scope', '$state', 'Datamodel',
   function($scope, $state, Datamodel) {
-    new WOW().init();   
     $scope.sendMail = function() {
       Datamodel.sendMail();
     }
